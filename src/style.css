@@ -1,3 +1,15 @@
 body {
   background-color: bisque;
 }
+
+.imgcontainer {
+  width: 500px;
+}
+
+.header-popup {
+  width: 500px;
+}
+
+img {
+  width: 100%;
+}
