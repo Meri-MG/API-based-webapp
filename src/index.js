@@ -1,6 +1,6 @@
 import './style.css';
 
-const getLink = 'Hi Aku and Zachee';
+const getLink = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2020-07-09&end_date=2020-07-14';
 const getImage = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2017-07-08';
 const main = document.getElementById('addToScreen');
 
@@ -64,6 +64,9 @@ function displayImage() {
   getScores(getImage)
     .then((data) => {
       displayPopup(data.hdurl, data.title, data.explanation);
+    })
+    .catch((error) => {
+      console.log(error);
     });
 }
 
