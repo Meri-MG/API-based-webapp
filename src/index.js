@@ -21,21 +21,14 @@ function addToScoreBord(img, title, index) {
           <a href="#"><i class="far fa-star"></i></a>
         </div>
         <small>0 likes</small> 
-        <input type="button" value="Comments" class="comment">
+        <input type="button" value="Comments" id="${index}" class="comment">
         `;
   main.appendChild(div);
 }
 
-function displayScores() {
-  getScores(getLink)
-    .then((data) => data.forEach((elem, index) => addToScoreBord(elem.hdurl, elem.title, index)))
-    .then(() => {
-      const lastComment = document.getElementById('5');
-      lastComment.addEventListener('click', displayImage);
-    });
+function closePopup(target) {
+  target.parentElement.parentElement.remove();
 }
-
-displayScores();
 
 function displayPopup(img, title, description) {
   const popupDiv = document.createElement('div');
@@ -63,10 +56,6 @@ function displayPopup(img, title, description) {
   main.appendChild(popupDiv);
 }
 
-function closePopup(target) {
-  target.parentElement.parentElement.remove();
-}
-
 function displayImage() {
   getScores(getImage)
     .then((data) => displayPopup(data.hdurl, data.title, data.explanation))
@@ -78,3 +67,14 @@ function displayImage() {
     })
     .catch((error) => console.log(error));
 }
+
+function displayScores() {
+  getScores(getLink)
+    .then((data) => data.forEach((elem, index) => addToScoreBord(elem.hdurl, elem.title, index)))
+    .then(() => {
+      const lastComment = document.getElementById('5');
+      lastComment.addEventListener('click', displayImage);
+    });
+}
+
+displayScores();
