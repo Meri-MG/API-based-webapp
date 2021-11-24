@@ -18,11 +18,10 @@ function addToScoreBord(img, title, index) {
         </div>
         <div class="title">
           <h3>${title}</h3>
-          <span><i class="far fa-star"></i>
-          </span>
-          <small>0 likes</small> 
+          <a href="#"><i class="far fa-star"></i></a>
         </div>
-        <input type="button" value="Comments" id="${index}">
+        <small>0 likes</small> 
+        <input type="button" value="Comments" class="comment">
         `;
   main.appendChild(div);
 }
