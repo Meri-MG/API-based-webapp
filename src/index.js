@@ -1,7 +1,17 @@
 import './style.css';
+// import Image from './nasa2.png';
 
-const getLink = 'Hi Aku and Zachee';
+const getLink = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2018-07-15&end_date=2018-07-20';
 const main = document.getElementById('addToScreen');
+// const logo = document.querySelector('.logo');
+
+// function showImage() {
+//   const myImage = new Image();
+//   myImage.src = Image;
+//   return myImage;
+// }
+
+// logo.appendChild(showImage());
 
 const getScores = async (url) => {
   const response = await fetch(url);
@@ -17,11 +27,10 @@ function addToScoreBord(img, title) {
         </div>
         <div class="title">
           <h3>${title}</h3>
-          <span><i class="far fa-star"></i>
-          </span>
-          <small>0 likes</small> 
+          <p><i class="far fa-star"></i></p>
         </div>
-        <input type="button" value="Comments">
+        <small>0 likes</small> 
+        <input type="button" value="Comments" class="comment">
         `;
   main.appendChild(div);
 }
