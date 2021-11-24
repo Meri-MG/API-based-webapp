@@ -18,6 +18,10 @@ header {
   align-items: center;
 }
 
+.logo img {
+  width: 80px;
+}
+
 nav {
   width: 50%;
 }

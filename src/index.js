@@ -27,7 +27,7 @@ function addToScoreBord(img, title) {
         </div>
         <div class="title">
           <h3>${title}</h3>
-          <p><i class="far fa-star"></i></p>
+          <a href="#"><i class="far fa-star"></i></a>
         </div>
         <small>0 likes</small> 
         <input type="button" value="Comments" class="comment">
