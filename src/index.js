@@ -42,6 +42,8 @@ function displayPopup(img, title, description) {
   const popupDiv = document.createElement('div');
   popupDiv.classList.add('popupContainer');
   popupDiv.innerHTML = `
+   <span><i class="fas fa-times" id="close"></i>
+   </span>
    <div class="header-popup">
      <img src="${img}" class="whatever" alt="close-icon">
    </div>
@@ -62,8 +64,18 @@ function displayPopup(img, title, description) {
   main.appendChild(popupDiv);
 }
 
+function closePopup(target) {
+  target.parentElement.parentElement.remove();
+}
+
 function displayImage() {
   getScores(getImage)
     .then((data) => displayPopup(data.hdurl, data.title, data.explanation))
+    .then(() => {
+      const closeBtn = document.getElementById('close');
+      closeBtn.addEventListener('click', () => {
+        closePopup(closeBtn);
+      });
+    })
     .catch((error) => console.log(error));
 }
