@@ -4,7 +4,7 @@ const getLink = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date
 const getImage = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2020-07-21';
 const main = document.getElementById('addToScreen');
 const starLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/likes/';
-const commentLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/comments';
+// const commentLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/comments';
 
 const getScores = async (url) => {
   const response = await fetch(url);
@@ -19,12 +19,8 @@ const postScores = async (url, data) => {
     },
     body: JSON.stringify(data),
   });
-  return response.json();
+  return response;
 };
-
-// to give a star
-
-
 
 function addToScoreBord(img, title, index) {
   const div = document.createElement('div');
@@ -37,7 +33,7 @@ function addToScoreBord(img, title, index) {
           <h3>${title}</h3>
           <a href="#" id="${index}star" class="stars"><i class="far fa-star"></i></a>
         </div>
-        <small>0 <i>likes</i></small> 
+        <small></small>
         <input type="button" value="Comments" id="${index}" class="comment">
         `;
   main.appendChild(div);
@@ -47,16 +43,15 @@ function closePopup(target) {
   target.parentElement.parentElement.remove();
 }
 
-// functio to pass data to display
-
 function displayPopup(img, title, description) {
   const popupDiv = document.createElement('div');
-  popupDiv.classList.add('popupContainer');
+  popupDiv.classList.add('popupWindow');
   popupDiv.innerHTML = `
+  <div class="popupContainer">
    <span><i class="fas fa-times" id="close"></i>
    </span>
    <div class="header-popup">
-     <img src="${img}" class="whatever" alt="close-icon">
+     <img src="${img}" class="popup-image" alt="close-icon">
    </div>
    <h2>${title}</h2>
    <p class="description">${description}</p>
@@ -71,6 +66,7 @@ function displayPopup(img, title, description) {
        <textarea name="text" id="insights" cols="30" rows="10" placeholder="Your insights"></textarea>
        <input type="button" value="Comment">
      </form>
+   </div>
    </div>`;
   main.appendChild(popupDiv);
 }
@@ -83,54 +79,45 @@ function displayImage() {
       closeBtn.addEventListener('click', () => {
         closePopup(closeBtn);
       });
-    })
-    .catch((error) => console.log(error));
+    });
 }
-
-// stars must be number or string
-function increaseStars(element, stars) {
-  // const small = parseInt(element.parentElement.nextSibling.innerText)+1;// Check this !!!!!!
-  element.parentElement.nextSibling.innerHTML = stars;
-}
-
 
 const splitStars = (id, stars) => {
   const small = document.getElementById(id);
-  small.innerHTML += stars;
-}
+  small.parentElement.nextElementSibling.innerHTML = `${stars} stars`;
+};
 
 function displayStars() {
   getScores(starLink)
     .then((data) => data.forEach((elem) => splitStars(elem.item_id, elem.likes)));
 }
 
-
-
 function displayScores() {
   getScores(getLink)
     .then((data) => data.forEach((elem, index) => addToScoreBord(elem.hdurl, elem.title, index)))
-    .then(() => {
-      // WE must to give proper count of our stars 
-      displayStars();// function GET      
-    })
+    .then(() => displayStars());
+}
+
+function giveStar(id, stars) {
+  const data = { item_id: id };
+  postScores(starLink, data)
+    .then((data) => {
+      if (data.status === 201) {
+        splitStars(id, stars);
+      }
+    });
 }
 
 displayScores();
 
-function giveStar(id) {
-  console.log('hellvete');
-  const data  = {"item_id": id};
-  postScores(starLink, data)
-    // .then((data) => console.log(data)); read status    
-}
-
 main.addEventListener('click', (e) => {
-  console.log(e);
   if (e.target.classList.contains('fa-star')) {
-    giveStar(e.target.parentElement.id);
+    e.preventDefault();
+    const sC = parseInt(e.target.parentElement.parentElement.nextElementSibling.textContent, 10);
+    const stars = sC + 1;
+    giveStar(e.target.parentElement.id, stars);
   }
   if (e.target.classList.contains('comment')) {
     displayImage();
-  }  
-  
-})
+  }
+});
