@@ -1,5 +1,5 @@
 :root {
-  --bg-fill: rgba(209, 209, 255, 0.1);
+  --bg-fill: rgba(193, 193, 233, 0.1);
   --white-color: #fff;
   --width: 90%;
   --transition: all 0.3s ease-in;
@@ -153,13 +153,13 @@ footer {
 }
 
 .popupContainer h2,
-p {
+.description {
   color: var(--white-color);
   padding: 30px;
   text-align: center;
 }
 
-footer p {
+.footerP {
   width: var(--width);
   margin: 0 auto;
   padding: 30px 10px;
@@ -169,7 +169,7 @@ footer p {
 
 /* popup styles */
 .popupWindow {
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
@@ -190,7 +190,7 @@ footer p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255, 255, 255, 0.16);
+  background-color: rgba(20, 17, 17, 1);
   margin: 24px auto;
   row-gap: 15px;
 }
@@ -205,12 +205,16 @@ footer p {
   padding: 20px;
 }
 
+.popupContainer span {
+  align-self: flex-end;
+  padding: 20px;
+}
+
 #close {
-  float: right;
   color: var(--white-color);
   font-weight: var(--font-600);
   cursor: pointer;
-  font-size: 18px;
+  font-size: 25px;
 }
 
 .popupContainer form {
@@ -236,6 +240,6 @@ textarea {
 .popupContainer p {
   width: 80%;
   margin: 0 auto;
-  line-height: 18px;
+  line-height: 20px;
   font-weight: 500;
 }
