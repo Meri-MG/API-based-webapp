@@ -4,7 +4,7 @@ const getLink = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date
 const getImage = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&date=2020-07-21';
 const main = document.getElementById('addToScreen');
 const starLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/likes/';
-const commentLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/comments';
+// const commentLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/comments';
 
 const getScores = async (url) => {
   const response = await fetch(url);
@@ -83,7 +83,7 @@ function displayImage() {
 const splitStars = (id, stars) => {
   const small = document.getElementById(id);
   small.parentElement.nextElementSibling.innerHTML = `${stars} stars`;
-}
+};
 
 function displayStars() {
   getScores(starLink)
@@ -97,15 +97,13 @@ function displayScores() {
 }
 
 function giveStar(id, stars) {
-  console.log('hellvete');
-  const data  = {"item_id": id};
+  const data = { item_id: id };
   postScores(starLink, data)
-     .then((data) => {
-       console.log(data.status);
-       if (data.status === 201) {
-         splitStars(id, stars)
-       }
-     });
+    .then((data) => {
+      if (data.status === 201) {
+        splitStars(id, stars);
+      }
+    });
 }
 
 displayScores();
@@ -113,7 +111,8 @@ displayScores();
 main.addEventListener('click', (e) => {
   if (e.target.classList.contains('fa-star')) {
     e.preventDefault();
-    const stars = parseInt(e.target.parentElement.parentElement.nextElementSibling.textContent, 10) + 1;
+    const sC = parseInt(e.target.parentElement.parentElement.nextElementSibling.textContent, 10);
+    const stars = sC + 1;
     giveStar(e.target.parentElement.id, stars);
   }
   if (e.target.classList.contains('comment')) {
