@@ -19,12 +19,8 @@ const postScores = async (url, data) => {
     },
     body: JSON.stringify(data),
   });
-  return response.json();
+  return response;
 };
-
-// to give a star
-
-
 
 function addToScoreBord(img, title, index) {
   const div = document.createElement('div');
@@ -37,7 +33,7 @@ function addToScoreBord(img, title, index) {
           <h3>${title}</h3>
           <a href="#" id="${index}star" class="stars"><i class="far fa-star"></i></a>
         </div>
-        <small>0 <i>likes</i></small> 
+        <small></small>
         <input type="button" value="Comments" id="${index}" class="comment">
         `;
   main.appendChild(div);
@@ -46,8 +42,6 @@ function addToScoreBord(img, title, index) {
 function closePopup(target) {
   target.parentElement.parentElement.remove();
 }
-
-// functio to pass data to display
 
 function displayPopup(img, title, description) {
   const popupDiv = document.createElement('div');
@@ -83,20 +77,12 @@ function displayImage() {
       closeBtn.addEventListener('click', () => {
         closePopup(closeBtn);
       });
-    })
-    .catch((error) => console.log(error));
+    });
 }
-
-// stars must be number or string
-function increaseStars(element, stars) {
-  // const small = parseInt(element.parentElement.nextSibling.innerText)+1;// Check this !!!!!!
-  element.parentElement.nextSibling.innerHTML = stars;
-}
-
 
 const splitStars = (id, stars) => {
   const small = document.getElementById(id);
-  small.innerHTML += stars;
+  small.parentElement.nextElementSibling.innerHTML = `${stars} stars`;
 }
 
 function displayStars() {
@@ -104,33 +90,33 @@ function displayStars() {
     .then((data) => data.forEach((elem) => splitStars(elem.item_id, elem.likes)));
 }
 
-
-
 function displayScores() {
   getScores(getLink)
     .then((data) => data.forEach((elem, index) => addToScoreBord(elem.hdurl, elem.title, index)))
-    .then(() => {
-      // WE must to give proper count of our stars 
-      displayStars();// function GET      
-    })
+    .then(() => displayStars());
+}
+
+function giveStar(id, stars) {
+  console.log('hellvete');
+  const data  = {"item_id": id};
+  postScores(starLink, data)
+     .then((data) => {
+       console.log(data.status);
+       if (data.status === 201) {
+         splitStars(id, stars)
+       }
+     });
 }
 
 displayScores();
 
-function giveStar(id) {
-  console.log('hellvete');
-  const data  = {"item_id": id};
-  postScores(starLink, data)
-    // .then((data) => console.log(data)); read status    
-}
-
 main.addEventListener('click', (e) => {
-  console.log(e);
   if (e.target.classList.contains('fa-star')) {
-    giveStar(e.target.parentElement.id);
+    e.preventDefault();
+    const stars = parseInt(e.target.parentElement.parentElement.nextElementSibling.textContent, 10) + 1;
+    giveStar(e.target.parentElement.id, stars);
   }
   if (e.target.classList.contains('comment')) {
     displayImage();
-  }  
-  
-})
+  }
+});
