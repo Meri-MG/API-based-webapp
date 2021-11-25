@@ -47,6 +47,8 @@ function closePopup(target) {
   target.parentElement.parentElement.remove();
 }
 
+// functio to pass data to display
+
 function displayPopup(img, title, description) {
   const popupDiv = document.createElement('div');
   popupDiv.classList.add('popupContainer');
@@ -91,11 +93,18 @@ function increaseStars(element, stars) {
   element.parentElement.nextSibling.innerHTML = stars;
 }
 
-// WORK ON THIS
+
+const splitStars = (id, stars) => {
+  const small = document.getElementById(id);
+  small.innerHTML += stars;
+}
+
 function displayStars() {
   getScores(starLink)
-    .then((data) => data.forEach((elem, index) => increaseStars(elem.hdurl, elem.title, index)))
+    .then((data) => data.forEach((elem) => splitStars(elem.item_id, elem.likes)));
 }
+
+
 
 function displayScores() {
   getScores(getLink)
@@ -108,17 +117,20 @@ function displayScores() {
 
 displayScores();
 
-function giveStar(id, element) {
-  postScores(starLink, data = {"item_id": id})
-    .then(increaseStars(element));
+function giveStar(id) {
+  console.log('hellvete');
+  const data  = {"item_id": id};
+  postScores(starLink, data)
+    // .then((data) => console.log(data)); read status    
 }
 
-
 main.addEventListener('click', (e) => {
-  if (e.target.classList.contains('stars')) {
-    giveStar(e.target.id, e.target);
+  console.log(e);
+  if (e.target.classList.contains('fa-star')) {
+    giveStar(e.target.parentElement.id);
   }
   if (e.target.classList.contains('comment')) {
     displayImage();
   }  
+  
 })
