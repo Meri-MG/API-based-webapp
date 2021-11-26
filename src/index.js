@@ -102,8 +102,6 @@ function displayComments(id) {
 }
 
 function addComment(id, user, str) {
-  // const ulChild = document.querySelector('#comment-link').childElementCount;
-  // const id = `${ulChild}comment`;
   const data = {
     item_id: id,
     username: user,
@@ -118,10 +116,10 @@ function addComment(id, user, str) {
 }
 
 function displayImage(id) {
-  getScores(getImage(id))// CHECK THIS IS NUMBER ????
+  getScores(getImage(id))
     .then((data) => displayPopup(data.hdurl, data.title, data.explanation, id))
     .then(() => {
-      displayComments(id);// pass ID from card
+      displayComments(id);
       const closeBtn = document.getElementById('close');
       closeBtn.addEventListener('click', () => {
         closePopup(closeBtn);
@@ -169,11 +167,8 @@ main.addEventListener('click', (e) => {
   }
   if (e.target.classList.contains('comment')) {
     displayImage(parseInt(e.target.id, 10));
-    // const hello = parseInt(e.target.id);
-    // console.log(hello + ' : ' + typeof hello)
   }
   if (e.target.id === 'popupComment') {
-    // must pass item_ID from card
     e.preventDefault();
     const id = (e.target.parentElement.id).match(/[0-9]/g);
     const userName = document.getElementById('userName');
