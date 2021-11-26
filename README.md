@@ -1,65 +1,68 @@
-![](https://img.shields.io/badge/Microverse-blueviolet)
-
 # Project Name
 
-> One paragraph statement about the project.
+> This group project is about building our own web application based on an external API which in this case is NASA API [portal](https://api.nasa.gov/). This website helps with discoverability of relevant Astronomy Picture of the Day.
+> User can interact with the website through the likes and comments, in which Microverse built [involvement API](https://www.notion.so/Involvement-API-869e60b5ad104603aa6db59e08150270) is used.
 
-![screenshot](./app_screenshot.png)
-
-Additional description about the project and its features.
+![screenshot]()
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- HTML
+- CSS
+- JavaScript
+- Webpack
+- VS code
+- NASA API [portal](https://api.nasa.gov/).
+- [Involvement API](https://www.notion.so/Involvement-API-869e60b5ad104603aa6db59e08150270)
 
 ## Live Demo
 
 [Live Demo Link](https://livedemo.com)
 
+## Video Presentation
+Watch the [live]() presentation of the created website
 
-## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+# Getting Started
+## Prerequisites:
 
 
-To get a local copy up and running follow these simple example steps.
+- Create an account on github
 
-### Prerequisites
+- Install gitbash or use git on the command line.
+
+- Use an IDE of your preference such as VScode.
 
 ### Setup
 
-### Install
+## Steps to follow:
 
-### Usage
+- Choose a folder in your local machine where you want this repository to be copied
 
-### Run tests
+- Clone this [repository](https://github.com/Meri-MG/Capstone-module-02) to your locaL machine with `git clone` command.
+It should look similar to this git clone https://github.com/smithj/azure-docs.git Enter your github credentials if prompted.
 
-### Deployment
+- On the command line, at the project's root, run 'npm install' to install app dependencies.
 
+- Next, run 'npm start' which will run the app in the development mode.
+
+- Open the index.html file with the browser of your preference.
 
 
 ## Authors
 
-👤 **Author1**
+👤 **Gints Misins**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [GintsM](https://github.com/GintsM)
 
-👤 **Author2**
+👤 **Meri Gogichashvili**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [Meri-MG](https://github.com/Meri-MG)
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [issues page](https://github.com/Meri-MG/Capstone-module-02/issues).
 
 ## Show your support
 
@@ -67,9 +70,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Thanks to NASA open API [portal](https://api.nasa.gov/)
 
 ## 📝 License
 

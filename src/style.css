@@ -1,5 +1,5 @@
 :root {
-  --bg-fill: rgba(204, 204, 245, 0.4);
+  --bg-fill: #555;
   --white-color: rgba(255, 255, 255, 0.75);
   --width: 90%;
   --transition: all 0.3s ease-in;
@@ -91,6 +91,7 @@ a {
 
 .cardContainer {
   width: 28%;
+  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -118,6 +119,10 @@ a {
 
 .fa-star:hover {
   transform: var(--scale);
+}
+
+.fa-star:focus {
+  background-color: #15418c;
 }
 
 small {
