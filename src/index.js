@@ -72,10 +72,6 @@ function displayPopup(img, title, description, id) {
   main.appendChild(popupDiv);
 }
 
-// export function countElements(elem) {
-//   return elem.childElementCount;
-// }
-
 function countItems() {
   const itemCount = document.querySelector('#item-count');
   const section = document.querySelector('#addToScreen');
@@ -136,7 +132,7 @@ const splitStars = (id, stars) => {
 function displayStars() {
   getScores(starLink)
     .then((data) => data.forEach((elem, i) => {
-      if (i < 6) {
+      if (i < countElements(main)) {
         splitStars(elem.item_id, elem.likes);
       }
     }));
