@@ -1,3 +1,12 @@
+:root {
+  --bg-fill: rgba(204, 204, 245, 0.4);
+  --white-color: rgba(255, 255, 255, 0.75);
+  --width: 90%;
+  --transition: all 0.3s ease-in;
+  --scale: scale(1.1);
+  --font-600: 600;
+}
+
 * {
   box-sizing: border-box;
   list-style: none;
@@ -6,20 +15,45 @@
 }
 
 body {
-  background-color: bisque;
+  background-image: url(/src/images/bgimg1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 header {
-  width: 90%;
+  width: 100%;
+  padding: 15px 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--bg-fill);
+}
+
+.header-wrapper {
+  width: var(--width);
   margin: 0 auto;
-  padding: 20px 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
+.imgcontainer img {
+  width: 100%;
+  margin-bottom: 5%;
+  transition: var(--transition);
+}
+
 .logo img {
   width: 80px;
+  transition: var(--transition);
+}
+
+.imgcontainer img:hover {
+  transform: var(--scale);
+}
+
+.logo img:hover {
+  transform: var(--scale);
 }
 
 nav {
@@ -32,13 +66,22 @@ nav ul {
   align-items: center;
 }
 
+.nav-link {
+  transition: var(--transition);
+}
+
+.nav-link:hover {
+  transform: var(--scale);
+}
+
 a {
   text-decoration: none;
-  color: black;
+  color: var(--white-color);
+  font-weight: var(--font-600);
 }
 
 #addToScreen {
-  width: 90%;
+  width: var(--width);
   margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
@@ -53,12 +96,10 @@ a {
   justify-content: center;
   align-items: center;
   margin: 5% 0;
-  padding: 0 10px;
-}
-
-.imgcontainer img {
-  width: 100%;
-  margin-bottom: 5%;
+  padding: 20px 20px;
+  background-color: var(--bg-fill);
+  transition: var(--transition);
+  border-radius: 3px;
 }
 
 .title {
@@ -68,27 +109,142 @@ a {
   align-items: center;
   padding: 5px;
   margin-bottom: 5%;
+  color: var(--white-color);
+}
+
+.fa-star {
+  transition: var(--transition);
+}
+
+.fa-star:hover {
+  transform: var(--scale);
 }
 
 small {
   align-self: flex-end;
   margin-bottom: 5%;
+  color: var(--white-color);
+  font-weight: var(--font-600);
 }
 
-.comment {
+input[type=button] {
   width: 60%;
   margin-bottom: 5%;
   padding: 5px 10px;
+  background-color: var(--white-color);
+  color: rgba(0, 0, 0, 0.75);
+  transition: var(--transition);
+  font-weight: var(--font-600);
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+input[type=button]:hover {
+  transform: var(--scale);
+  color: var(--white-color);
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 footer {
   bottom: 0;
-  background-color: rgb(194, 194, 194);
+  background-color: var(--bg-fill);
   width: 100%;
 }
 
-footer p {
-  width: 90%;
+.popupContainer h2,
+.description {
+  color: var(--white-color);
+  padding: 30px;
+  text-align: center;
+}
+
+.footerP {
+  width: var(--width);
   margin: 0 auto;
   padding: 30px 10px;
+  color: var(--white-color);
+  font-weight: var(--font-600);
+}
+
+/* popup styles */
+.popupWindow {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  z-index: 50;
+  overflow-y: scroll;
+}
+
+.popupContainer {
+  position: relative;
+  width: 80%;
+  border: 1px solid #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(20, 17, 17, 1);
+  margin: 24px auto;
+  row-gap: 15px;
+}
+
+.header-popup {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.popup-image {
+  width: 100%;
+  padding: 20px;
+}
+
+.popupContainer span {
+  align-self: flex-end;
+  padding: 20px;
+}
+
+#close {
+  color: var(--white-color);
+  font-weight: var(--font-600);
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.popupContainer form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+  margin: 20px auto;
+}
+
+input[type=text],
+textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 20px;
+}
+
+::placeholder {
+  padding: 10px;
+}
+
+.popupContainer p {
+  width: 80%;
+  margin: 0 auto;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+#comment-link li {
+  color: var(--white-color);
+  padding: 5px;
 }
