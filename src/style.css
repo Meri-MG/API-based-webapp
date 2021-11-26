@@ -1,6 +1,6 @@
 :root {
-  --bg-fill: rgba(193, 193, 233, 0.1);
-  --white-color: #fff;
+  --bg-fill: rgba(204, 204, 245, 0.4);
+  --white-color: rgba(255, 255, 255, 0.75);
   --width: 90%;
   --transition: all 0.3s ease-in;
   --scale: scale(1.1);
@@ -132,7 +132,7 @@ input[type=button] {
   margin-bottom: 5%;
   padding: 5px 10px;
   background-color: var(--white-color);
-  color: #000;
+  color: rgba(0, 0, 0, 0.75);
   transition: var(--transition);
   font-weight: var(--font-600);
   border: none;
@@ -143,7 +143,7 @@ input[type=button] {
 input[type=button]:hover {
   transform: var(--scale);
   color: var(--white-color);
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 footer {
@@ -242,4 +242,9 @@ textarea {
   margin: 0 auto;
   line-height: 20px;
   font-weight: 500;
+}
+
+#comment-link li {
+  color: var(--white-color);
+  padding: 5px;
 }
