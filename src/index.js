@@ -95,7 +95,7 @@ function displayComments(id) {
   getScores(showProper)
     .then((data) => data.forEach((elem) => showComment(elem.username, elem.comment)))
     .then(() => countComments())
-    .catch(() => showComment('no', 'coments yet'));
+    .catch(() => showComment('no', 'comments yet'));
 }
 
 function addComment(id, user, str) {
@@ -109,7 +109,8 @@ function addComment(id, user, str) {
       if (data.status === 201) {
         showComment(user, str);
       }
-    });
+    })
+    .catch(() => showComment('no', 'comments yet'));
 }
 
 function displayImage(id) {
@@ -121,7 +122,8 @@ function displayImage(id) {
       closeBtn.addEventListener('click', () => {
         closePopup(closeBtn);
       });
-    });
+    })
+    .catch((err) => console.log(err));
 }
 
 const splitStars = (id, stars) => {
@@ -135,7 +137,8 @@ function displayStars() {
       if (i < countElements(main)) {
         splitStars(elem.item_id, elem.likes);
       }
-    }));
+    }))
+    .catch((err) => console.log(err));
 }
 
 function displayScores() {
@@ -144,7 +147,8 @@ function displayScores() {
     .then(() => {
       displayStars();
       countItems();
-    });
+    })
+    .catch((err) => console.log(err));
 }
 
 function giveStar(id, stars) {
@@ -154,7 +158,8 @@ function giveStar(id, stars) {
       if (data.status === 201) {
         splitStars(id, stars);
       }
-    });
+    })
+    .catch((err) => console.log(err));
 }
 
 displayScores();
