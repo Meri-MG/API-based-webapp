@@ -5,7 +5,7 @@ const getLink = 'https://api.nasa.gov/planetary/apod?api_key=4SuCuNxM0J6w1FmjQok
 const datesForPopup = ['2021-03-16', '2021-03-17', '2021-03-18', '2021-03-19', '2021-03-20', '2021-03-21'];
 const getImage = (num) => `https://api.nasa.gov/planetary/apod?api_key=4SuCuNxM0J6w1FmjQokTcawsubomH7aV4ep60VgT&date=${datesForPopup[num]}`;
 const main = document.getElementById('addToScreen');
-const starLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/likes/';
+const starLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/likes';
 const commentLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/comments';
 
 const getScores = async (url) => {
@@ -98,7 +98,8 @@ function displayComments(id) {
   const showProper = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/comments?item_id=${id}`;
   getScores(showProper)
     .then((data) => data.forEach((elem) => showComment(elem.username, elem.comment)))
-    .then(() => countComments());
+    .then(() => countComments())
+    .catch(() => showComment('no', 'coments yet'));
 }
 
 function addComment(id, user, str) {
@@ -134,7 +135,11 @@ const splitStars = (id, stars) => {
 
 function displayStars() {
   getScores(starLink)
-    .then((data) => data.forEach((elem) => splitStars(elem.item_id, elem.likes)));
+    .then((data) => data.forEach((elem, i) => {
+      if (i < 6) {
+        splitStars(elem.item_id, elem.likes);
+      }
+    }));
 }
 
 function displayScores() {
