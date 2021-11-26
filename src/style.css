@@ -37,6 +37,14 @@ header {
   align-items: center;
 }
 
+.imgcontainer {
+  height: 320px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  overflow: hidden;
+}
+
 .imgcontainer img {
   width: 100%;
   margin-bottom: 5%;
@@ -91,7 +99,6 @@ a {
 
 .cardContainer {
   width: 28%;
-  height: 500px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -109,8 +116,12 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 5px;
-  margin-bottom: 5%;
+  margin: 10% 0;
   color: var(--white-color);
+}
+
+.title h2 {
+ margin-right: 5px;
 }
 
 .fa-star {
@@ -252,4 +263,21 @@ textarea {
 #comment-link li {
   color: var(--white-color);
   padding: 5px;
+}
+
+@media (max-width: 900px) {
+  .cardContainer {
+    width: 45%;
+  }
+}
+
+@media (max-width: 500px) {
+  .cardContainer {
+    width: 90%;
+    margin: 10px auto;
+  }
+
+  .header-wrapper {
+    flex-direction: column;
+  }
 }
