@@ -3,7 +3,7 @@
 > This group project is about building our own web application based on an external API which in this case is NASA API [portal](https://api.nasa.gov/). This website helps with discoverability of relevant Astronomy Picture of the Day.
 > User can interact with the website through the likes and comments, in which Microverse built [involvement API](https://www.notion.so/Involvement-API-869e60b5ad104603aa6db59e08150270) is used.
 
-![screenshot](https://github.com/Meri-MG/Capstone-module-02/blob/project_setup/screenshot.png)
+![screenshot](https://github.com/Meri-MG/Capstone-module-02/blob/development/screenshot.png)
 
 ## Built With
 
