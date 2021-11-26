@@ -1,4 +1,5 @@
 import './style.css';
+import { countElements } from './comments.js';
 
 const getLink = 'https://api.nasa.gov/planetary/apod?api_key=4SuCuNxM0J6w1FmjQokTcawsubomH7aV4ep60VgT&start_date=2021-03-16&end_date=2021-03-21';
 const datesForPopup = ['2021-03-16', '2021-03-17', '2021-03-18', '2021-03-19', '2021-03-20', '2021-03-21'];
@@ -74,6 +75,21 @@ function displayPopup(img, title, description, id) {
   main.appendChild(popupDiv);
 }
 
+// export function countElements(elem) {
+//   return elem.childElementCount;
+// }
+
+function countItems() {
+  const itemCount = document.querySelector('#item-count');
+  const section = document.querySelector('#addToScreen');
+  itemCount.firstChild.innerHTML = `APOD ${countElements(section)}`;
+}
+
+function countComments() {
+  const commentCount = document.querySelector('#comment-link');
+  commentCount.previousElementSibling.innerHTML = `Comments ${countElements(commentCount)}`;
+}
+
 function showComment(user, str) {
   const ulCont = document.querySelector('#comment-link');
   const li = document.createElement('li');
@@ -84,7 +100,8 @@ function showComment(user, str) {
 function displayComments(id) {
   const showProper = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/comments?item_id=${id}`;
   getScores(showProper)
-    .then((data) => data.forEach((elem) => showComment(elem.username, elem.comment)));
+    .then((data) => data.forEach((elem) => showComment(elem.username, elem.comment)))
+    .then(() => countComments());
 }
 
 function addComment(id, user, str) {
@@ -128,7 +145,10 @@ function displayStars() {
 function displayScores() {
   getScores(getLink)
     .then((data) => data.forEach((elem, index) => addToScoreBord(elem.hdurl, elem.title, index)))
-    .then(() => displayStars());
+    .then(() => {
+      displayStars();
+      countItems();
+    });
 }
 
 function giveStar(id, stars) {
