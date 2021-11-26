@@ -3,13 +3,10 @@ import { countElements } from './comments.js';
 
 const getLink = 'https://api.nasa.gov/planetary/apod?api_key=4SuCuNxM0J6w1FmjQokTcawsubomH7aV4ep60VgT&start_date=2021-03-16&end_date=2021-03-21';
 const datesForPopup = ['2021-03-16', '2021-03-17', '2021-03-18', '2021-03-19', '2021-03-20', '2021-03-21'];
-const getImage = (num) => {
-  return `https://api.nasa.gov/planetary/apod?api_key=4SuCuNxM0J6w1FmjQokTcawsubomH7aV4ep60VgT&date=${datesForPopup[num]}`;
-}
+const getImage = (num) => `https://api.nasa.gov/planetary/apod?api_key=4SuCuNxM0J6w1FmjQokTcawsubomH7aV4ep60VgT&date=${datesForPopup[num]}`;
 const main = document.getElementById('addToScreen');
 const starLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/likes/';
 const commentLink = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/9mAPgvMc6PjOJk4JU1ZU/comments';
-
 
 const getScores = async (url) => {
   const response = await fetch(url);
@@ -171,7 +168,7 @@ main.addEventListener('click', (e) => {
     giveStar(e.target.parentElement.id, stars);
   }
   if (e.target.classList.contains('comment')) {
-    displayImage(parseInt(e.target.id));
+    displayImage(parseInt(e.target.id, 10));
     // const hello = parseInt(e.target.id);
     // console.log(hello + ' : ' + typeof hello)
   }
