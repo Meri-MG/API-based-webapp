@@ -1,5 +1,5 @@
 import './style.css';
-import { countElements } from './comments.js';
+import { countElements } from './comments';
 
 const getLink = 'https://api.nasa.gov/planetary/apod?api_key=4SuCuNxM0J6w1FmjQokTcawsubomH7aV4ep60VgT&start_date=2021-03-16&end_date=2021-03-21';
 const datesForPopup = ['2021-03-16', '2021-03-17', '2021-03-18', '2021-03-19', '2021-03-20', '2021-03-21'];
